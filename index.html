@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<style>
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 1%;
+  height: 15px;
+  background-color: rgb(93, 146, 189);
+}
+</style>
+
+<body>
+
+<h1>JavaScript Progress Bar</h1>
+
+<div id="myProgress">
+  <div id="myBar"></div>
+</div>
+
+<script>
+
+function increment() {
+    var barProg = document.getElementById("myBar");
+    let startDate = '2019-10-05';
+    let endDate = '2020-04-04';
+    let totalTimeDiff = (new Date(startDate)) - (new Date(endDate));
+    totalNumDays = totalTimeDiff / (1000 * 60 * 60 * 24);
+
+    let currentTimeDiff = (new Date(startDate)) - (Date.now());
+    currentNumDays = currentTimeDiff / (1000 * 60 * 60 * 24); 
+
+    console.log(totalNumDays);
+    console.log(currentNumDays);
+    let percentProg = (totalNumDays - currentNumDays) / 100;
+    console.log(percentProg);
+
+    barProg.style.width = percentProg + "%";
+}
+increment();
+</script>
+
+</body>
+</html>
