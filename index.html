@@ -1,46 +1,69 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <link rel="stylesheet" href="reset.css">
+</head>
+
 <style>
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 
+    'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1 {
+    font-weight: 400;
+    font-size: larger;
+    padding-bottom: 15px;
+}
+
+#content {
+    padding: 15px;
+    border: 1px solid black;
+}
+
 #myProgress {
   width: 100%;
-  background-color: #ddd;
+  background-color: rgb(204, 180, 180);
 }
 
 #myBar {
   width: 1%;
   height: 15px;
-  background-color: rgb(93, 146, 189);
+  background-color: rgb(202, 4, 4);
 }
 </style>
 
 <body>
 
-<h1>JavaScript Progress Bar</h1>
-
-<div id="myProgress">
-  <div id="myBar"></div>
+<div id="content">
+    <h1>U of U - Bootcamp Class Progress Bar</h1>
+    <div id="myProgress">
+        <div id="myBar"></div>
+    </div>
+    <hr>
+    <div id="details"></div>
 </div>
 
 <script>
+    function increment() {
+        let barProg = document.getElementById("myBar");
+        let startDate = '2019-10-05';
+        let endDate = '2020-04-04';
+        let totalTimeDiff = (new Date(startDate)) - (new Date(endDate));
+        totalNumDays = totalTimeDiff / (1000 * 60 * 60 * 24);
 
-function increment() {
-    var barProg = document.getElementById("myBar");
-    let startDate = '2019-10-05';
-    let endDate = '2020-04-04';
-    let totalTimeDiff = (new Date(startDate)) - (new Date(endDate));
-    totalNumDays = totalTimeDiff / (1000 * 60 * 60 * 24);
+        let currentTimeDiff = (new Date(startDate)) - (Date.now());
+        currentNumDays = currentTimeDiff / (1000 * 60 * 60 * 24); 
 
-    let currentTimeDiff = (new Date(startDate)) - (Date.now());
-    currentNumDays = currentTimeDiff / (1000 * 60 * 60 * 24); 
+        let percentProg = (totalNumDays - currentNumDays) / 100;
 
-    console.log(totalNumDays);
-    console.log(currentNumDays);
-    let percentProg = (totalNumDays - currentNumDays) / 100;
-    console.log(percentProg);
+        barProg.style.width = percentProg + "%";
 
-    barProg.style.width = percentProg + "%";
-}
-increment();
+        //details printout
+        document.getElementById("details").innerHTML = 
+            "Days remaining: " + Math.floor(percentProg * -100) + " of " + -totalNumDays;
+    }
+    increment();
 </script>
 
 </body>
